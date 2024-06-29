@@ -1,11 +1,10 @@
-import { Text } from '@rneui/base';
-import { StyleSheet, View } from 'react-native';
+import { Text } from "@rneui/base";
+import { StyleSheet, View } from "react-native";
 
-
-export default function TabOneScreen() {
+export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Tab Two</Text>
       <View style={styles.separator} />
     </View>
   );
@@ -14,16 +13,16 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
 });
