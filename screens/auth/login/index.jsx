@@ -47,7 +47,7 @@ const LoginScreen = () => {
         />
 
         <View style={styles.form}>
-          <CustomInput
+          {/* <CustomInput
             placeholder={"Email"}
             inputPlaceholder="Enter your email address"
             onPress={(value) => {
@@ -70,8 +70,19 @@ const LoginScreen = () => {
               formik.setErrors({});
             }}
             error={formik.errors.password}
+          /> */}
+          <PhoneNumberInput
+            placeholder={"Phone"}
+            onPress={(value) => {
+              formik.setValues((prev) => ({
+                ...prev,
+                phoneNumber: value,
+              }));
+              formik.setErrors({});
+            }}
+            error={formik.errors.phoneNumber}
           />
-          <Text
+          {/* <Text
             text={"Forgot Password ?"}
             fontWeight="semiBold"
             underlined
@@ -79,11 +90,11 @@ const LoginScreen = () => {
             onPress={() => {
               router.replace("/auth/register");
             }}
-          />
+          /> */}
         </View>
       </View>
       <View style={styles.bottom}>
-        <Text>
+        {/* <Text>
           <Text
             text={"I don't have and account"}
             fontWeight="light"
@@ -98,7 +109,7 @@ const LoginScreen = () => {
               router.replace("/auth/register");
             }}
           />
-        </Text>
+        </Text> */}
         <Button
           title="Sing In"
           containerStyle={{ width: appDimension.width * 0.8 }}

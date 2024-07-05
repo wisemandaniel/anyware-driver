@@ -26,14 +26,15 @@ const WelcomeScreen = () => {
       />
       <View style={styles.welcomeView}>
         <Text
-          text={"Control you home with just a press"}
+          text={"Earn on Your Schedule. Deliver Happiness."}
           variant="bigTitle"
           fontWeight="bold"
           marginBottom={appDimension.height * 0.03}
+          center
         />
         <Text
           text={
-            "Transform your home with our smart app. Easy setup, endless possibilities. Welcome to a smarter living"
+            "Be your own boss, set your own hours, and deliver smiles with every drop-off."
           }
           fontWeight="light"
           variant="title"
