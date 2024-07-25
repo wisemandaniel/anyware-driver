@@ -46,7 +46,7 @@ const LoginScreen = () => {
         <Text
           variant={"title"}
           text={"Hey, welcome!"}
-          fontWeight="bold"
+          fontWeight="800"
           style={{ fontSize: 32 }}
           marginBottom={10}
         />

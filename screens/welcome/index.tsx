@@ -14,7 +14,7 @@ const WelcomeScreen = () => {
   const router = useRouter();
 
   const goToNext = () => {
-    router.replace("/auth/login");
+    router.push("/auth/login");
   };
 
   return (
@@ -28,7 +28,7 @@ const WelcomeScreen = () => {
         <Text
           text={"Earn on Your Schedule. Deliver Happiness."}
           variant="bigTitle"
-          fontWeight="bold"
+          fontWeight="semiBold"
           marginBottom={appDimension.height * 0.03}
           center
         />

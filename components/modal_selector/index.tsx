@@ -279,7 +279,6 @@ const styles = StyleSheet.create({
     display: "none",
   },
   textStyle: {
-    fontFamily: "regular",
     color: Colors.primary,
   },
   containerStyle: {
@@ -289,7 +288,6 @@ const styles = StyleSheet.create({
   },
   cancel: {
     color: Colors.grey200,
-    fontFamily: "regular",
   },
   overlay: {
     backgroundColor: Colors.backdrop,

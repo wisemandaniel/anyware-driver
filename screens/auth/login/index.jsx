@@ -36,7 +36,7 @@ const LoginScreen = () => {
         <Text
           variant={"title"}
           text={"Hey, welcome back!"}
-          fontWeight="bold"
+          fontWeight="800"
           style={{ fontSize: 32 }}
           marginBottom={10}
         />
@@ -113,6 +113,7 @@ const LoginScreen = () => {
         <Button
           title="Sing In"
           containerStyle={{ width: appDimension.width * 0.8 }}
+          onPress={()=>{router.push("/(tabs)")}}
         />
       </View>
     </SafeAreaView>
