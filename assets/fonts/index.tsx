@@ -1,10 +1,9 @@
-export const SF_Pro_Display = {
-  boldItalic: require("./sf-pro-display/SF-Pro-Display-BoldItalic.ttf"),
-  bold: require("./sf-pro-display/SF-Pro-Display-Bold.ttf"),
-  italic: require("./sf-pro-display/SF-Pro-Display-RegularItalic.ttf"),
-  regular: require("./sf-pro-display/SF-Pro-Display-Regular.ttf"),
-  lightItalic: require("./sf-pro-display/SF-Pro-Display-LightItalic.ttf"),
-  light: require("./sf-pro-display/SF-Pro-Display-Light.ttf"),
-  semiBoldItalic: require("./sf-pro-display/SF-Pro-Display-SemiboldItalic.ttf"),
-  semiBold: require("./sf-pro-display/SF-Pro-Display-Semibold.ttf")
+export const RanadeFonts = {
+  SpaceMono: require("./ranade/SpaceMono-Regular.ttf"),
+  "Ranade-light": require("./ranade/Ranade-Light.otf"),
+  "Ranade-italic": require("./ranade/Ranade-Italic.otf"),
+  "Ranade-medium": require("./ranade/Ranade-Medium.otf"),
+  "Ranade-bold": require("./ranade/Ranade-Bold.otf"),
+  "Ranade-regular": require("./ranade/Ranade-Regular.otf"),
+  "Ranade-medium-Italic": require("./ranade/Ranade-MediumItalic.otf"),
 };

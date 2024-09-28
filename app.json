@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "anyware_delivery",
-    "slug": "anyware_delivery",
+    "name": "anyware-driver",
+    "slug": "anyware-driver",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -12,14 +12,27 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anyware.driver"
     },
     "android": {
+      "package": "com.anyware.driver",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCp-BUoX8B8699rkbnb2P2CK4gXSeesVcc"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -27,10 +40,39 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "sk.eyJ1Ijoid2lzZW1hbmRhbmllbCIsImEiOiJjbTExZjVuaGMwaDBzMm1wZDNkNXRwcjl0In0.2qW15RRkmE0dcplPqQVcnA",
+          "RNMapboxMapsVersion": "11.0.0"
+        }
+      ],
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access camera."
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
+        }
+      ],
+      "expo-asset",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "bb95b420-1256-4fce-88c2-2de0decde01a"
+      }
     }
   }
 }
