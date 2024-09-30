@@ -23,6 +23,8 @@ PODS:
     - ExpoModulesCore
   - EXManifests (0.14.3):
     - ExpoModulesCore
+  - EXNotifications (0.28.17):
+    - ExpoModulesCore
   - Expo (51.0.31):
     - ExpoModulesCore
   - expo-dev-client (4.0.25):
@@ -241,6 +243,8 @@ PODS:
     - ZXingObjC/OneD
     - ZXingObjC/PDF417
   - ExpoCrypto (13.0.2):
+    - ExpoModulesCore
+  - ExpoDevice (6.0.2):
     - ExpoModulesCore
   - ExpoFileSystem (17.0.1):
     - ExpoModulesCore
@@ -1583,6 +1587,7 @@ DEPENDENCIES:
   - EXJSONUtils (from `../node_modules/expo-json-utils/ios`)
   - EXLocation (from `../node_modules/expo-location/ios`)
   - EXManifests (from `../node_modules/expo-manifests/ios`)
+  - EXNotifications (from `../node_modules/expo-notifications/ios`)
   - Expo (from `../node_modules/expo`)
   - expo-dev-client (from `../node_modules/expo-dev-client/ios`)
   - expo-dev-launcher (from `../node_modules/expo-dev-launcher`)
@@ -1592,6 +1597,7 @@ DEPENDENCIES:
   - ExpoBlur (from `../node_modules/expo-blur/ios`)
   - ExpoCamera (from `../node_modules/expo-camera/ios`)
   - ExpoCrypto (from `../node_modules/expo-crypto/ios`)
+  - ExpoDevice (from `../node_modules/expo-device/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
   - ExpoHead (from `../node_modules/expo-router/ios`)
@@ -1700,6 +1706,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-location/ios"
   EXManifests:
     :path: "../node_modules/expo-manifests/ios"
+  EXNotifications:
+    :path: "../node_modules/expo-notifications/ios"
   Expo:
     :path: "../node_modules/expo"
   expo-dev-client:
@@ -1718,6 +1726,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-camera/ios"
   ExpoCrypto:
     :path: "../node_modules/expo-crypto/ios"
+  ExpoDevice:
+    :path: "../node_modules/expo-device/ios"
   ExpoFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
@@ -1878,6 +1888,7 @@ SPEC CHECKSUMS:
   EXJSONUtils: 30c17fd9cc364d722c0946a550dfbf1be92ef6a4
   EXLocation: 43e9b582ca63a23c6f0a18d8cbe2145b3a388b55
   EXManifests: c1fab4c3237675e7b0299ea8df0bcb14baca4f42
+  EXNotifications: 1177f1f3acba90ac409ac70d011dc00c75049635
   Expo: 4773e11951abd0f666f67023f0cb1d48c3e8a32b
   expo-dev-client: 97910d9e4753f5deae96c3b657a071ee09ce85f5
   expo-dev-launcher: c8e85bf244a2492448c88adbc3585ca13572f7b9
@@ -1887,6 +1898,7 @@ SPEC CHECKSUMS:
   ExpoBlur: fa53f874e7b208bc3756d1bf07903c12e790beb1
   ExpoCamera: 470eeb1c0170f5a5b96c7179b0285f0ef5e9e161
   ExpoCrypto: 156078f266bf28f80ecf5e2a9c3a0d6ffce07a1c
+  ExpoDevice: fc94f0e42ecdfd897e7590f2874fc64dfa7e9b1c
   ExpoFileSystem: 80bfe850b1f9922c16905822ecbf97acd711dc51
   ExpoFont: e7f2275c10ca8573c991e007329ad6bf98086485
   ExpoHead: fcb28a68ed4ba28f177394d2dfb8a0a8824cd103

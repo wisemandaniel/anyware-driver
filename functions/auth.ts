@@ -21,6 +21,7 @@ export interface SignupData {
 export interface LoginData {
   phoneNumber: string;
   password: string;
+  fcmToken: string;
 }
 
 export interface AuthResponse {

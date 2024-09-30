@@ -21,6 +21,7 @@
     },
     "android": {
       "package": "com.anyware.driver",
+      "googleServicesFile": "./google-services-file.json",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyCp-BUoX8B8699rkbnb2P2CK4gXSeesVcc"
@@ -71,8 +72,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "bb95b420-1256-4fce-88c2-2de0decde01a"
+        "projectId": "a7e90da7-c6c0-419e-8bfc-db3fd0a779bd"
       }
-    }
+    },
+    "owner": "ndzodan"
   }
 }
