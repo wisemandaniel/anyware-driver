@@ -83,7 +83,7 @@ const OrderDetails = () => {
       ) : (
         <View>
       <View style={styles.header}>
-          <Text style={styles.invoice}>Invoice: {orderDetails?.orderNumber}</Text>
+          <Text style={styles.invoice}>Invoice: #{orderDetails?.orderNumber}</Text>
         </View>
 
         {/* Service Details */}

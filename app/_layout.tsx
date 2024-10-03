@@ -32,6 +32,7 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Log } from "@/configs/function";
 import Loader from "@/components/loader";
 import { IAppState } from "@/store/interface";
+// import registerNNPushToken from 'native-notify';
 
 const toastConfig = {
   success: (props: React.JSX.IntrinsicAttributes & BaseToastProps) => (
@@ -95,6 +96,8 @@ const InitialLayout = ({ setLoading }: { setLoading: any }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const token = useSelector((state: IAppState) => state.systemPersist.token);
+
+  // registerNNPushToken(11930, 'ctOwNMexTubcMybQWPKq0w');
 
   useEffect(() => {
     const loadFonts = async () => {

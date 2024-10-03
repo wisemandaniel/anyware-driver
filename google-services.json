@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1051996744044",
-    "project_id": "anyware-2de62",
-    "storage_bucket": "anyware-2de62.appspot.com"
+    "project_number": "965926123411",
+    "project_id": "driver-29709",
+    "storage_bucket": "driver-29709.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1051996744044:android:3f12ba15ffd0b1ebcfeb49",
+        "mobilesdk_app_id": "1:965926123411:android:5a957d22133257a6ec5a66",
         "android_client_info": {
           "package_name": "com.anyware.driver"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCzPm5ks-RfQHjbpYtjlRu8tf4QijEeFfw"
+          "current_key": "AIzaSyBVyqkrp42exgrJ_NZLitbEqghU_rhqWX0"
         }
       ],
       "services": {
