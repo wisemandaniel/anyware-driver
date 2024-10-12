@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "965926123411",
+    "project_id": "driver-29709",
+    "storage_bucket": "driver-29709.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965926123411:android:5a957d22133257a6ec5a66",
+        "android_client_info": {
+          "package_name": "com.anyware.driver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVyqkrp42exgrJ_NZLitbEqghU_rhqWX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
