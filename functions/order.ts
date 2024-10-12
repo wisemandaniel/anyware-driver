@@ -2,6 +2,11 @@ import { appEnv } from "@/configs/env";
 import axios from "axios";
 
 const API_BASE_URL = `${appEnv.backendUrl}/orders`;
+const API_DRIVER = `${appEnv.backendUrl}/driver-location`;
+
+export interface Location {
+  driverId: string, latitude: number, longitude: number
+}
 
 export interface Order {
   food: {};
@@ -157,3 +162,19 @@ export const getAssignedOrders = async (token: string): Promise<Order[]> => {
     throw error;
   }
 };
+
+export const sendLocationOfDriver = async (token: any, location: Location) => {
+  try {
+    const response = await axios.post<Order>(`${API_DRIVER}`, location, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      alert(`Error: ${error.response.data.message}`);
+    } else {
+      console.error("Error updating location:", error);
+    }
+    throw error;
+  }
+}

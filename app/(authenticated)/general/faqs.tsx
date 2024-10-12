@@ -1,48 +1,31 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Accordion from 'react-native-collapsible/Accordion';
+import { getGlobalVarriables } from '@/functions/settings';
+import { IAppState } from '@/store/interface';
+import Toast from 'react-native-toast-message';
+import { useSelector } from 'react-redux';
 
 const Page = () => {
   const [activeSections, setActiveSections] = useState([]);
-
-  const SECTIONS = [
-    {
-      title: 'What are the benefits of using our delivery service?',
-      content: 'Our delivery service offers fast, reliable, and safe transportation of your packages. Whether it’s food, laundry, or any other items, we ensure timely deliveries right to your doorstep. Our tracking system allows you to monitor your delivery in real-time, giving you peace of mind.',
-    },
-    {
-      title: 'How do I place an order for delivery?',
-      content: 'To place an order, simply select the service you need, select or add your delivery address, and make a payment. You can also schedule deliveries for a later time that suits you best.',
-    },
-    {
-      title: 'What items can I send using the delivery service?',
-      content: 'You can send a variety of items including food, groceries, laundry, and other small packages. However, there are restrictions on hazardous materials, large furniture, and other prohibited items. Please check our guidelines for more details.',
-    },
-    {
-      title: 'What payment methods do you accept?',
-      content: 'We accept multiple payment methods including MTN mobile money, Orange money, and cash on delivery. You can choose the payment option that is most convenient for you at checkout.',
-    },
-    {
-      title: 'How do I track my delivery?',
-      content: 'Once your order is placed, you you can go to the order detail where you will see the status of the order in real-time. You will also receive updates via SMS or email.',
-    },
-  ];
-  
+  const token = useSelector((state: IAppState) => state.systemPersist.token);
+  const [faqs, setFaqs] = useState<any[]>([]); // Initialize faqs as an empty array
+  const [loading, setLoading] = useState(true);
 
   const renderHeader = (section: { title: string }, _: string, isActive: boolean) => {
     return (
       <View style={[styles.header, isActive ? styles.activeHeader : null]}>
-        <Text style={[styles.headerText, isActive ? styles.activeHeaderText : null]}>{section.title}</Text>
+        <Text style={[styles.headerText, isActive ? styles.activeHeaderText : null]}>{section.question}</Text>
         <Ionicons name={isActive ? "chevron-up" : "chevron-down"} size={20} color="#007AFF" />
       </View>
     );
   };
 
-  const renderContent = (section: { content: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }) => {
+  const renderContent = (section: { content: string }) => {
     return (
       <View style={styles.content}>
-        <Text style={styles.contentText}>{section.content}</Text>
+        <Text style={styles.contentText}>{section.answer}</Text>
       </View>
     );
   };
@@ -51,16 +34,46 @@ const Page = () => {
     setActiveSections(activeSections);
   };
 
+  const getSettings = async () => {
+    try {
+      const varriables = await getGlobalVarriables(token as string);
+
+      // Make sure the FAQs exist and are an array
+      if (varriables?.faqs && Array.isArray(varriables.faqs)) {
+        setFaqs(varriables.faqs);
+      } else {
+        setFaqs([]); // Ensure it's an empty array if no data is fetched
+      }
+
+      setLoading(false);
+    } catch (error) {
+      Toast.show({
+        type: "error",
+        text1: "Error",
+        text2: "Failed to fetch frequently asked questions.",
+      });
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getSettings();
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>FAQ</Text>
-      <Accordion
-        sections={SECTIONS}
-        activeSections={activeSections}
-        renderHeader={renderHeader}
-        renderContent={renderContent}
-        onChange={updateSections}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" color="#007AFF" />
+      ) : (
+        <Accordion
+          sections={faqs} 
+          activeSections={activeSections}
+          renderHeader={renderHeader}
+          renderContent={renderContent}
+          onChange={updateSections}
+        />
+      )}
     </ScrollView>
   );
 };
@@ -87,7 +100,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#ddd',
     borderRadius: 5,
-    marginBottom: 10,
+    marginBottom: 30,
   },
   headerText: {
     fontSize: 16,
@@ -103,7 +116,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#fff',
     borderRadius: 5,
-    marginBottom: 10,
+    marginBottom: 30,
     borderWidth: 1,
     borderColor: '#ddd',
   },

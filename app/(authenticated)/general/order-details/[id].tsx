@@ -2,10 +2,10 @@ import Loader from '@/components/loader';
 import Colors from '@/constants/Colors';
 import { cancelOrder, getOrderById, Order } from '@/functions/order';
 import { IAppState } from '@/store/interface';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal, Alert, Linking, Platform } from 'react-native';
 import QRCode from "react-native-qrcode-svg";
 import Toast from 'react-native-toast-message';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,6 +25,7 @@ const OrderDetails = () => {
     try {
       const fetchedOrder = await getOrderById(id as string, token as string);
       setOrderDetails(fetchedOrder.order);
+      
       setLoading(false);
     } catch (error) {
       Toast.show({
@@ -72,6 +73,16 @@ const OrderDetails = () => {
         text2: 'Please let the customer pay first before you deliver.',
       });
     }
+  };
+
+  const handleCallDriver = (phoneNumber: string) => {
+    const phoneUrl = Platform.OS === 'android' ? `tel:${phoneNumber}` : `telprompt:${phoneNumber}`;
+    Linking.openURL(phoneUrl).catch((err) => console.error('Error making call:', err));
+  };
+
+  const handleWhatsAppDriver = (phoneNumber: string) => {
+    const whatsappUrl = `whatsapp://send?phone=${phoneNumber}`;
+    Linking.openURL(whatsappUrl).catch((err) => Alert.alert('Error', 'WhatsApp is not installed on your device.'));
   };
 
   return (
@@ -214,6 +225,18 @@ const OrderDetails = () => {
         <Text style={styles.totalText}>20mins</Text>
       </View>}
 
+
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+          {(orderDetails?.status === 'ACCEPTED') && <TouchableOpacity onPress={() => handleCallDriver(orderDetails.receiverContact.phoneCall)} style={styles.buttonActions}>
+          <FontAwesome5 name="phone-alt" size={20} color="white" />
+          <Text style={styles.buttonText}>Call</Text>
+        </TouchableOpacity>}
+          {(orderDetails?.status === 'ACCEPTED') && <TouchableOpacity onPress={() => handleWhatsAppDriver(orderDetails.receiverContact.whatsapp)} style={styles.buttonActions}>
+          <FontAwesome5 name="whatsapp" size={20} color="white" />
+          <Text style={styles.buttonText}>WhatsApp</Text>
+        </TouchableOpacity>}
+      </View>
+
         <View style={{marginBottom: 50}}>
         {(orderDetails?.status === 'ACCEPTED') && <TouchableOpacity onPress={() => {
                     router.push({
@@ -225,7 +248,7 @@ const OrderDetails = () => {
                       },
                     });
                   }} style={styles.buttonPay}>
-          <Text style={styles.buttonText}> Follow route</Text>
+          <Text style={styles.buttonText}>Route information</Text>
         </TouchableOpacity>}
 
         {(orderDetails?.status !== 'DELIVERED') && <TouchableOpacity onPress={handleConfirmDelivery} style={styles.buttonPay}>
@@ -366,6 +389,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
+  buttonActions: {
+    flexDirection: 'row',
+    backgroundColor: '#50C878',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
   buttonCan: {
     backgroundColor: '#FF4E4E',
     padding: 15,
@@ -377,6 +408,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+    paddingHorizontal: 10
   },
   qrCodeContainer: {
     flex: 1,

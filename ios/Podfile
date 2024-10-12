@@ -38,7 +38,7 @@ prepare_react_native_project!
 $RNMapboxMapsDownloadToken = 'sk.eyJ1Ijoid2lzZW1hbmRhbmllbCIsImEiOiJjbTExZjVuaGMwaDBzMm1wZDNkNXRwcjl0In0.2qW15RRkmE0dcplPqQVcnA'
 $RNMapboxMapsVersion = '11.0.0'
 # @generated end @rnmapbox/maps-rnmapboxmapsimpl
-target 'anyware' do
+target 'anywaredriver' do
   use_expo_modules!
   config = use_native_modules!
 
