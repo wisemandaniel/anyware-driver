@@ -39,23 +39,35 @@ const MapScreen = () => {
     storeUserData();
   }, [token, user]); // Dependency array ensures this runs only when token/user change
 
-  // Function to request location permissions and get driver's current position
-  const getCurrentLocation = useCallback(async () => {
-    try {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permission Denied', 'Location permission is required to access your current location.');
-        return;
+  const getCurrentLocation = useCallback(() => {
+    const startWatchingLocation = async () => {
+      try {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          Alert.alert('Permission Denied', 'Location permission is required to access your current location.');
+          return;
+        }
+  
+        await Location.watchPositionAsync(
+          {
+            accuracy: Location.Accuracy.High,
+            timeInterval: 10000, // Update every 10 seconds
+            distanceInterval: 1, // Or update when user moves 10 meters
+          },
+          (location) => {
+            const currentDriverCoordinates: [number, number] = [location.coords.longitude, location.coords.latitude];
+            setDriverCoordinates(currentDriverCoordinates);
+          }
+        );
+      } catch (error) {
+        console.error('Error getting location:', error);
+        Alert.alert('Error', 'Unable to retrieve your location. Please try again.');
       }
-
-      const location = await Location.getCurrentPositionAsync({});
-      const currentDriverCoordinates: [number, number] = [location.coords.longitude, location.coords.latitude];
-      setDriverCoordinates(currentDriverCoordinates);
-    } catch (error) {
-      console.error('Error getting location:', error);
-      Alert.alert('Error', 'Unable to retrieve your location. Please try again.');
-    }
+    };
+  
+    startWatchingLocation(); // Start watching the user's location
   }, []);
+  
 
   // Fetch route from Mapbox
   const fetchRoute = useCallback(async (driverCoords: [number, number], orderCoords: [number, number]) => {
