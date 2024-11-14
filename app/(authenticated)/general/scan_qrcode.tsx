@@ -59,12 +59,12 @@ export default function App() {
           },
           text2: "You successfully Deliver this package",
         });
-        router.back();
+        router.push('/(authenticated)/(tabs)/active')
       } else {
         const errorData = response.data;
         alert(`An error occurred: ${errorData.message}`);
       }
-    } catch (error) {
+    } catch (error: any) {
       Toast.show({
         type: "error",
         text1: "Error",
@@ -81,24 +81,40 @@ export default function App() {
   }
 
   const handleBarCodeScanned = (barcodeData: any) => {
-    const order = JSON.parse(barcodeData.data);
-    if (order._id !== orderId) {
+    if (scanned) return; // prevent multiple scans
+  
+    setScanned(true);
+    console.log('yes...');
+  
+    try {
+      const order = JSON.parse(barcodeData.data);
+  
+      if (order.id !== orderId) {
+        Toast.show({
+          type: "error",
+          text1: "Error",
+          text1Style: {
+            fontSize: 18,
+            fontWeight: "bold",
+            color: Colors.background,
+          },
+          text2: "Sorry, you are not allowed to deliver this order because it was not assigned to you",
+        });
+      } else {
+        dispatch(setOrder(order));
+        deliverOrder();
+      }
+    } catch (error) {
+      console.error("Error parsing barcode data:", error);
       Toast.show({
         type: "error",
         text1: "Error",
-        text1Style: {
-          fontSize: 18,
-          fontWeight: "bold",
-          color: Colors.background,
-        },
-        text2: "Sorry you are not allowed to deliver this order because it was not assigned to you",
+        text2: "Invalid QR code format.",
       });
-    } else {
-      dispatch(setOrder(order));
-      setScanned(true);
-      console.log(barcodeData.data);
-      deliverOrder()
     }
+  
+    // Optional: Reset `scanned` after a delay if you want to scan again later
+    setTimeout(() => setScanned(false), 8000); // adjust delay as needed
   };
 
   if (hasPermission === null) {
@@ -115,12 +131,13 @@ export default function App() {
         package
       </Text>
       <CameraView
-        onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+        onBarcodeScanned={handleBarCodeScanned}
         barcodeScannerSettings={{
           barcodeTypes: ["qr", "pdf417"],
         }}
         style={styles.camera}
       />
+      
       {scanned && (
         <TouchableOpacity
           style={styles.button}
@@ -129,7 +146,7 @@ export default function App() {
         >
           <Text style={styles.buttonText}>Tap to Scan Again</Text>
         </TouchableOpacity>
-      )}
+     )} 
     </ScrollView>
   );
 }

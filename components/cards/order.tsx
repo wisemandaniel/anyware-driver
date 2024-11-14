@@ -28,7 +28,7 @@ const OrderCardComponent: React.FC<OrderCardComponentProps> = ({
       </View>
       <Text style={styles.title}>Order #{orderNumber}</Text>
       <Text style={styles.description}>Status: <Text style={styles.status}>{status}</Text></Text>
-      <Text style={styles.description}>Last Updated: {lastUpdated}</Text>
+      <Text style={styles.description}>Last Updated: {new Date(lastUpdated).toLocaleString()}</Text>
       <Text style={styles.totalAmount}>Total Amount: XAF {totalAmount.toFixed(2)}</Text>
       <Text style={styles.serviceTypes}>
         Services: <Text style={{fontWeight: 'bold'}}>{serviceTypes.join(', ')}</Text>

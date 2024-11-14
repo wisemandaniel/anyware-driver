@@ -8,6 +8,7 @@ import { getUserProfile, ProfileResponse, updatedProfile } from '@/functions/pro
 import { IAppState } from '@/store/interface';
 import Colors from '@/constants/Colors';
 import axios from 'axios';
+import { appEnv } from '@/configs/env';
 
 const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -102,7 +103,7 @@ const Page = () => {
   const uploadProfilePhoto = async (imageUri: string) => {
     setIsLoading(true);
     try {
-      const formData = new FormData();
+      const formData: any = new FormData();
         formData.append('image', {
             uri: imageUri,
             name: 'profile.jpg',
@@ -111,7 +112,7 @@ const Page = () => {
 
 
       const response = await axios.put(
-        'https://a353-129-0-102-56.ngrok-free.app/api/profile/profile-picture',
+        `${appEnv.backendUrl}/profile/profile-picture`,
         formData,
         {
           headers: {

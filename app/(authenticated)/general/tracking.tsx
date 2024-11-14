@@ -67,7 +67,6 @@ const MapScreen = () => {
   
     startWatchingLocation(); // Start watching the user's location
   }, []);
-  
 
   // Fetch route from Mapbox
   const fetchRoute = useCallback(async (driverCoords: [number, number], orderCoords: [number, number]) => {
